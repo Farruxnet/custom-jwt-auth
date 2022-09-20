@@ -13,7 +13,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, password=None):
+    def create_superuser(self, username, name = None, password=None):
         user = self.create_user(
             username,
             password=password,
@@ -54,5 +54,3 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
-
-    
