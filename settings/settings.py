@@ -69,7 +69,10 @@ AUTH_USER_MODEL = 'users.User'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db()
+    # 'default': env.db(),
+    'default': env.db_url(
+        'SQLITE_URL'
+    )
 }
 
 
@@ -103,6 +106,22 @@ USE_I18N = True
 
 USE_TZ = True
 
+JWT = {
+    "ACCESS_EXPIRATION_TIME": 50, # MIN
+    "REFRESH_EXPIRATION_TIME": 3, # DAYS
+    "user": "id"
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'users.utils.authentication.CustomTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/

@@ -62,6 +62,9 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('id',)
     filter_horizontal = ()
 
+@admin.register(Token)
+class TokenAdmin(admin.ModelAdmin):
+    readonly_fields = ('access', 'refresh')
+
 admin.site.register(User, UserAdmin)
-admin.site.register(Token)
 admin.site.unregister(Group)
