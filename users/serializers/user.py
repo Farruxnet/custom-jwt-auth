@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from users.models.user import User
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -8,6 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True},
         }
+
 
 class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,6 +19,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
             'id': {'read_only': True},
             'username': {'read_only': True},
         }
+
 
 class UserInSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True, trim_whitespace=True)

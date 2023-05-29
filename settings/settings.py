@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -12,12 +13,10 @@ env = environ.Env(
 
 environ.Env.read_env()
 
-SECRET_KEY=env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
-
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
 
 # Application definition
 
@@ -75,7 +74,6 @@ DATABASES = {
     )
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -94,7 +92,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -107,8 +104,8 @@ USE_I18N = True
 USE_TZ = True
 
 JWT = {
-    "ACCESS_EXPIRATION_TIME": 50, # MIN
-    "REFRESH_EXPIRATION_TIME": 3, # DAYS
+    "ACCESS_EXPIRATION_TIME": 50,  # MIN
+    "REFRESH_EXPIRATION_TIME": 3,  # DAYS
     "user": "id"
 }
 
@@ -133,7 +130,6 @@ STATIC_ROOT = BASE_DIR / 'static/'
 MEDIA_URL = '/media/'
 MEDIAFILES_DIR = BASE_DIR / '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

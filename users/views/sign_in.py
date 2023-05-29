@@ -1,3 +1,4 @@
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
@@ -6,13 +7,13 @@ from users.models.user import User
 from users.models.token import Token
 from users.serializers.user import UserInSerializer, UserSerializer
 from django.contrib.auth import authenticate
-from django.contrib.auth.hashers import make_password
 
 
 class SignInView(APIView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = UserSerializer
 
+    @swagger_auto_schema(request_body=UserInSerializer)
     def post(self, request):
         username = request.data['username']
         password = request.data['password']
