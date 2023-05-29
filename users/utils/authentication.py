@@ -4,6 +4,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.exceptions import AuthenticationFailed
 from users.models import Token
 
+
 class CustomTokenAuthentication(TokenAuthentication):
     def authenticate_credentials(self, access):
         token = Token.objects.filter(access=access, access_expiration__gte=timezone.now()).first()
